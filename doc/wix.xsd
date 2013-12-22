@@ -545,7 +545,6 @@
         <xs:element ref="SlipstreamMsp" />
         <xs:element ref="Payload" />
         <xs:element ref="PayloadGroupRef" />
-        <xs:element ref="RemotePayload" />
         <xs:any namespace="##other" processContents="lax">
           <xs:annotation>
             <xs:documentation>
@@ -620,7 +619,6 @@
         <xs:element ref="MsiProperty" />
         <xs:element ref="Payload" />
         <xs:element ref="PayloadGroupRef" />
-        <xs:element ref="RemotePayload" />
         <xs:any namespace="##other" processContents="lax">
           <xs:annotation>
             <xs:documentation>
@@ -671,7 +669,6 @@
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element ref="Payload" />
         <xs:element ref="PayloadGroupRef" />
-        <xs:element ref="RemotePayload" />
         <xs:any namespace="##other" processContents="lax">
           <xs:annotation>
             <xs:documentation>
@@ -1204,9 +1201,6 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
-      <xs:choice minOccurs="0" maxOccurs="1">
-        <xs:element ref="RemotePayload" />
-      </xs:choice>
       <xs:attribute name="Id" type="xs:string">
         <xs:annotation>
           <xs:documentation>The identifier of Payload element.</xs:documentation>
@@ -1295,13 +1289,7 @@
       <xs:documentation>Describes a information about a remote file payload that is not available at the time of building the bundle.  
       The parent must specify DownloadUrl and must not specify SourceFile when using this element.</xs:documentation>
       <xs:appinfo>
-        <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="BootstrapperApplication" />
         <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="ExePackage" />
-        <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="MsiPackage" />
-        <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="MspPackage" />
-        <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="MsuPackage" />
-        <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="UX" />
-        <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="Payload" />
       </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
@@ -7906,11 +7894,11 @@
         <xs:annotation>
           <xs:documentation>
                         The Component Guid Generation Seed is a guid that must be used when a Component with the generate guid directive ("*")
-                        is not rooted in a standard Windows Installer directory (for example, ProgramFilesFolder or CommonFilesFolder, etc).
+                        is not rooted in a standard Windows Installer directory (for example, ProgramFilesFolder or CommonFilesFolder).
                         It is recommended that this attribute be avoided and that developers install their Components under standard
                         directories with unique names instead (for example, "ProgramFilesFolder\Company Name Product Name Version"). It is
                         important to note that once a directory is assigned a Component Guid Generation Seed the value must not change until
-                        the directory name changes.
+                        (and must be changed when) the path to that directory, including itself and all parent directories, changes.
                     </xs:documentation>
         </xs:annotation>
       </xs:attribute>
